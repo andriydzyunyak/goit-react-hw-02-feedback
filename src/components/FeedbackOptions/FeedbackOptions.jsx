@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import {
   OptionsControlBox,
   OptionsControl,
-} from 'components/FeedbackOptions.styled';
+} from 'components/FeedbackOptions/FeedbackOptions.styled';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
@@ -22,6 +22,12 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
 };
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.array,
-  onLeaveFeedback: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.exact({
+      good: PropTypes.number.isRequired,
+      neutral: PropTypes.number.isRequired,
+      bad: PropTypes.number.isRequired,
+    })
+  ),
+  onLeaveFeedback: PropTypes.func.isRequired,
 };
